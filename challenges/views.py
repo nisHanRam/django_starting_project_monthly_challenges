@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from functools import reduce
 
 monthly_challenges = {
     "january": "Eat no meat for entire month",
@@ -18,10 +19,18 @@ monthly_challenges = {
 }
 
 
+def list_of_months(request):
+    months = list(monthly_challenges.keys())
+    response_data = f"<ul>{reduce(
+        lambda resp_str, month: resp_str + f"<li><a href={reverse("month-challenge", args=[month])}>{month.capitalize()}</a></li>", months, ""
+    )}</ul>"
+    return HttpResponse(response_data)
+
+
 def monthly_challenge_by_number(request, month):
     months = list(monthly_challenges.keys())
     if month > len(months):
-        return HttpResponseNotFound("Invalid month!")
+        return HttpResponseNotFound("<h1>Invalid month!</h1>")
     redirect_month = months[month - 1]
     # reverse() allows us to create paths by referring to the names of the existing paths/urls
     # This is important because we should not hardcode url paths
@@ -33,6 +42,8 @@ def monthly_challenge_by_number(request, month):
 
 def monthly_challenge(request, month):
     try:
-        return HttpResponse(monthly_challenges[month])
+        challenge_text = monthly_challenges[month]
+        response_data = f"<h1>{challenge_text}</h1>"
+        return HttpResponse(response_data)
     except:
-        return HttpResponseNotFound("This month is not supported!")
+        return HttpResponseNotFound("<h1>This month is not supported!</h1>")
