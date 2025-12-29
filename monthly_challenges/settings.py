@@ -37,7 +37,7 @@ INSTALLED_APPS = [  # adding an app here makes django officially aware of it
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
+    "django.contrib.staticfiles", # You need this to apply static files
 ]
 
 MIDDLEWARE = [
