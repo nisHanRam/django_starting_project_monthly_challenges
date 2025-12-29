@@ -59,6 +59,7 @@ TEMPLATES = [
             # BASE_DIR / "challenges" / "templates"
             # If there are some global templates consumed by different apps, they should go here
             # Convention is not to include app level templates here, for that you can simply add that app to the INSTALLED_APPS list above
+            BASE_DIR / "templates"  # Because we have defined out base.html in templates folder which lives in the root and we want django to recognize it
         ],
         "APP_DIRS": True,  # By the way, django looks for templates in INSTALLED_APPS list because this APP_DIRS is set to True
         "OPTIONS": {
