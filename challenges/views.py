@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from functools import reduce
-from django.template.loader import render_to_string
 
 monthly_challenges = {
     "january": "Eat no meat for entire month",
@@ -47,7 +46,7 @@ def monthly_challenge(request, month):
         return render(
             request,
             "challenges/challenge.html",
-            {"text": challenge_text, "month": month.capitalize()},
+            {"text": challenge_text, "month": month},
         )
     except:
         return HttpResponseNotFound("<h1>This month is not supported!</h1>")
