@@ -1,0 +1,26 @@
+Page: {{ active_page|upper }} 
+<header>
+    <nav>
+        <a href="{% url 'index' %}">All Challenges</a>
+    </nav>
+    {{ month }} 
+</header>
+
+
+{% comment %} 
+    We got access to the month variable here because header template
+    was included in the challenges template, which had this variable.
+    Remember, included templates gets access to the variables of the 
+    templates in which they are included.
+
+    Note that header.html is also included in index.html, which does not
+    have any variable named month. So, when we output month here, only the
+    header of challenge.html page will have month besides nav-bar. In case
+    of index.html page we will not see the month, and we will see just the
+    nav-bar.
+{% endcomment %}
+
+{% comment %} 
+    active_page is passed to header.html from the templates where it was
+    included using the "with" keyword.
+{% endcomment %}

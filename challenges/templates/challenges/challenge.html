@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 
-{% block page_title %}
-  {{ month|title }} Challenge</title>
+{% block page_title %} 
+    {{ month|title }} Challenge 
 {% endblock %}
 
-{% block content %}
-  <h1>{{ month|title }}'s challenge</h1>
-  {% if text is not None%}
-  <h1>{{ text }}</h1>
-  {% else %}
-  <p>No challenge set for this month yet!</p>
-  {% endif %}
+{% block content %} 
+    {%include "challenges/includes/header.html" with active_page="challenge" %}
+    <h1>{{ month|title }}'s challenge</h1>
+    {% if text is not None%}
+        <h1>{{ text }}</h1>
+    {% else %}
+        <p>No challenge set for this month yet!</p>
+    {% endif %} 
 {% endblock %}
-  
+
+{% comment %} 
+    You can pass specific values to the included template using with keyword.
+{% endcomment %}
