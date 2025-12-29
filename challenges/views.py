@@ -15,16 +15,13 @@ monthly_challenges = {
     "september": "Do social service once a week",
     "october": "Do yoga for 60 minutes everyday",
     "november": "Eat one seasonal fruit daily",
-    "december": "Meditate for 30 minutes everyday",
+    "december": None,
 }
 
 
 def list_of_months(request):
     months = list(monthly_challenges.keys())
-    response_data = f"<ul>{reduce(
-        lambda resp_str, month: resp_str + f"<li><a href={reverse("month-challenge", args=[month])}>{month.capitalize()}</a></li>", months, ""
-    )}</ul>"
-    return HttpResponse(response_data)
+    return render(request, "challenges/index.html", {"months": months})
 
 
 def monthly_challenge_by_number(request, month):
