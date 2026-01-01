@@ -1,3 +1,9 @@
+{% load static %} 
+
+{% block css_files %} 
+    <link rel="stylesheet" href="{% static "challenges/header.css" %}">
+{% endblock %}
+
 Page: {{ active_page|upper }} 
 <header>
     <nav>

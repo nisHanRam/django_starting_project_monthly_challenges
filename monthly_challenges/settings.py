@@ -37,7 +37,7 @@ INSTALLED_APPS = [  # adding an app here makes django officially aware of it
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles", # You need this to apply static files
+    "django.contrib.staticfiles",  # You need this to apply static files
 ]
 
 MIDDLEWARE = [
@@ -59,7 +59,8 @@ TEMPLATES = [
             # BASE_DIR / "challenges" / "templates"
             # If there are some global templates consumed by different apps, they should go here
             # Convention is not to include app level templates here, for that you can simply add that app to the INSTALLED_APPS list above
-            BASE_DIR / "templates"  # Because we have defined out base.html in templates folder which lives in the root and we want django to recognize it
+            BASE_DIR
+            / "templates"  # Because we have defined out base.html in templates folder which lives in the root and we want django to recognize it
         ],
         "APP_DIRS": True,  # By the way, django looks for templates in INSTALLED_APPS list because this APP_DIRS is set to True
         "OPTIONS": {
@@ -121,3 +122,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
